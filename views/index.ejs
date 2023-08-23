@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>To-Doru</title>
+</head>
+<body>
+    
+    <div class="container">
+         <h2><%= heading %></h2>
+          
+         <table class="table">
+
+            <tr class="headings">
+            <th>Task</th>
+            <th>Time</th>
+            <th>Action</th>
+            </tr>
+            
+             <% if (locals.data) { %>
+                 <% data.forEach(element => { %>
+                  <tr class="data">
+                    <td><%= element.name %></td>
+                    <td><%= element.time %></td>
+                    <td>
+                        <form action="/delete-task" method="POST">
+                            <input type="hidden" name="toDelete" value="<%= element.name %>">
+                            <button type="submit" class="delete-button"> <i class="fas fa-trash"> </i>  DELETE</button>
+                         </form>
+                        
+                    </td>
+                  </tr>
+                 <% }) %>
+             <% } %>
+         </table>
+
+<br>
+         <form action="/add-task" method="POST">
+            <input type="text" placeholder="Enter a new task"  name="newTask" class="input-fields">
+            <input type="text" placeholder="Enter Date" name="taskDate"   class="input-fields">
+            <button class="add-button" formaction="/add-task">+</button>
+         </form>
+    </div>
+
+
+
+
+</body>
+</html>
