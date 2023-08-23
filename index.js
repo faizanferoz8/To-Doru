@@ -55,6 +55,6 @@ app.post("/add-task", (req,res)=>{
 })
 
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening `);
 });
